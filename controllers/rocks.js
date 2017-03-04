@@ -151,10 +151,10 @@ function createImageRoute(req, res, next) {
 
   req.user
     .save()
-    .then(() => res.redirect('/user'))
+    .then(() => res.redirect('/rocks'))
     .catch((err) => {
       console.log(err);
-      if(err.name === 'ValidationError') return res.badRequest('/user/images/new', err.toString());
+      if(err.name === 'ValidationError') return res.badRequest('/rocks/images/new', err.toString());
       next(err);
     });
 }

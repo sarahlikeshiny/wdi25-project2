@@ -5,29 +5,29 @@
     </button>
     <a class="navbar-brand" href="/">GeoGram</a>
 
-        <% if(locals.isLoggedIn) { %>
+
           <div class="collapse navbar-collapse" id="collapse">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="/rocks/index">Feed</a>
+                <a class="nav-link" href="/rocks/">Feed</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/user/show">Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/rocks/images/new">Upload New Picture</a>
+                <a class="nav-link" href="/rocks/new">Upload New Picture</a>
               </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
-        <% } else { %>
+
           <li class="nav-item">
             <a class="nav-link" href="/login">Log In</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register">Register</a>
           </li>
-        <% } %>
+
       </ul>
     </div>
   </div>

@@ -24,7 +24,8 @@ router.route('/rocks/:id/edit')
   .get(secureRoute, rocks.edit);
 
 router.route('/rocks/:id/comments')
-  .post(secureRoute, rocks.createComment);
+  // .post(secureRoute, rocks.createComment);
+  .post( rocks.createComment);
 
 router.route('/rocks/:id/comments/:commentId')
     .delete(secureRoute, rocks.deleteComment);
@@ -32,7 +33,7 @@ router.route('/rocks/:id/comments/:commentId')
 router.route('/rock/images/new')
   .get(secureRoute, rocks.newImage);
 
-router.route('/rock/images')
+router.route('/rocks')
   .post(secureRoute, upload.single('filename'), rocks.createImage);
 
 router.route('/register')
