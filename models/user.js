@@ -4,8 +4,17 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   username: {type: String},
   email: { type: String},
-  password: {type: String, required: true}
+  password: {type: String, required: true},
+  profileImage: {type: String}
 });
+
+//profile image, embedded in userSchema
+userSchema.virtual('profileImageSRC')
+  .get(function getProfileImageSRC(){
+    if(!this.profileImage) return null;
+    if(this.profileImage.match(/^http/)) return this.profileImage;
+    return `https://s3-eu-west-1.amazonaws.com/wdi25project2/${this.profileImage}`;
+  });
 
 userSchema
   .virtual('passwordConfirmation')//virtual - we don't want to store the pw but we do want to check it exists

@@ -1,0 +1,11 @@
+<h1>rocks/index</h1>
+<h2>this is the feed page</h2>
+<% rocks.forEach((rock) => { %>
+  <div>
+    <a href="/rocks/<%= rock.id %>">
+      <img src="<%= rock.image %>" alt="<%= rock.name %>">
+      <h2><%= rock.name %></h2>
+
+    </a>
+  </div>
+<% }) %>
