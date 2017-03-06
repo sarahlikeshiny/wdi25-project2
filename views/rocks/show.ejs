@@ -1,0 +1,50 @@
+<h1>rocks/show</h1>
+
+<%if(locals.message) { %>
+<p><%= message %></p>
+<% } %>
+  <div>
+
+    <a href="/rocks/<%= rock.id %>">
+    </a>
+      <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>">
+      <h2><%= rock.name %></h2>
+      <h2><%= rock.location %></h2>
+      <h2><%= rock.category %></h2>
+      <h3><%= rock.image.caption %></h3>
+
+      <% if(locals.isAuthenticated) { %>
+        <form method="POST" action="/rocks/<%= rock.id %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <button>Delete Rock</button>
+      </form>
+    <% } %>
+
+  </div>
+
+  <section>
+
+
+        <form method="POST" action="/rocks/<%= rock.id %>/comments">
+        <textarea name="content" id="content" class = "comment" placeholder="Comment"></textarea>
+        <div>
+        <button class ="comment">Leave a comment</button>
+        </div>
+        </form>
+
+
+      <% rock.comments.forEach((comment) => { %>
+        <p><%= comment.content %></p>
+        <small><%= comment.createdBy.username %></small>
+    <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
+    <form method="POST" action="/rocks/<%= rock.id %>/comments/<%= comment.id %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <button>Delete</button>
+  </form>
+    <% } %>
+  <% }) %>
+
+
+
+
+  </section>

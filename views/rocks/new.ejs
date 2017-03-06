@@ -1,5 +1,8 @@
 <h1>Rocks/new</h1>
 <h2>This is the uploads page</h2>
+<%if(locals.message) { %>
+<p><%= message %></p>
+<% } %>
 
 <form method="POST" action="/rocks" enctype="multipart/form-data">
   <div class="form-group row">

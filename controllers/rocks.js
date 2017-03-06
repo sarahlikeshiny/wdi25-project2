@@ -1,4 +1,3 @@
-// this will control the rocks routes. Images and comments are embedded in the rocks model
 
 const Rock = require('../models/rock');
 // const User = require('../models/user');
@@ -20,10 +19,12 @@ function indexRoute(req, res, next) {
 }
 
 
-//create rocks route - this is only creating comments or a user? Console.logging req.body gives an empty record.
+//create rocks route 
 function createRoute(req, res, next) {
   console.log(req.body);
   req.body.createdBy = req.user;
+
+  if(req.file) req.body.image.filename = req.file.key;
 
   Rock
     .create(req.body)
@@ -45,18 +46,7 @@ function showRoute(req, res, next) {
     })
     .catch(next);
 }
-//show user route,
-// function showRoute(req, res, next) {
-//   User
-//     .findById(req.params.id)
-//     .populate('comments.createdBy')//populate the created by object
-//     .exec()
-//     .then((rock) => {
-//       if(!rock) return res.notFound();
-//       return res.render('rocks/show', { rock });
-//     })
-//     .catch(next);
-// }
+
 
 
 //edit rocks

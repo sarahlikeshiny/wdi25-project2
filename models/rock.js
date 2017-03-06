@@ -9,7 +9,8 @@ const commentSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-//check to see if the comment is owned by the user who is logged in
+
+// check to see if the comment is owned by the user who is logged in
 commentSchema.methods.ownedBy = function ownedBy(user){
   return this.createdBy.id === user.id;
 };
@@ -18,15 +19,22 @@ const rockSchema = new mongoose.Schema({
   name: {type: String},
   location: {type: String},
   category: {type: String},
-  createdBy: {type: mongoose.Schema.ObjectId, ref: 'User', required: true},//expect the value stored here to be an object id, in the user collection
+  createdBy: {type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   comments: [ commentSchema ],
   image: {
     filename: { type: String },
     caption: { type: String }
   }
+},{
+  timestamps: true
 });
+//check to see if the comment is owned by the user who is logged in
+// rockSchema.methods.ownedBy = function ownedBy(user){
+//   return this.createdBy.id === user.id;
+// };
 
-rockSchema.virtual('image.src')
+
+rockSchema.virtual('imageSRC')
   .get(function getImageSRC(){
     if(!this.image.filename) return null;
     return `https://s3-eu-west-1.amazonaws.com/wdi25project2/${this.image.filename}`;
