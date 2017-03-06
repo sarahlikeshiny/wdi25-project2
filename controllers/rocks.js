@@ -3,24 +3,26 @@
 const Rock = require('../models/rock');
 // const User = require('../models/user');
 
-//index Rock route,
-function indexRoute(req, res, next) {
-  Rock
-    .find()
-    .populate('createdBy')
-    .exec()
-    .then((rocks) => res.render('rocks/index', { rocks }))
-    .catch(next);
-}
-
 //new rocks route,
 function newRoute(req, res) {
   return res.render('rocks/new');
 }
 
-//create rocks route
-function createRoute(req, res, next) {
 
+//index Rock route,
+function indexRoute(req, res, next) {
+  Rock
+    .find()
+    .populate('comments.createdBy')
+    .exec()
+    .then((rocks) => res.render('rocks/index', { rocks }))
+    .catch(next);
+}
+
+
+//create rocks route - this is only creating comments or a user? Console.logging req.body gives an empty record.
+function createRoute(req, res, next) {
+  console.log(req.body);
   req.body.createdBy = req.user;
 
   Rock
@@ -115,7 +117,7 @@ function createCommentRoute(req, res, next) {
       rock.comments.push(req.body);//create an embedded record
       return rock.save();
     })
-  .then((rock) => res.redirect(`/rocks/${rock.id}`))
+  .then(() => res.redirect(`/rocks/`))
   .catch(next);
 }
 //delete comment
@@ -129,35 +131,35 @@ function deleteCommentRoute(req, res, next){
       const comment = rock.comments.id(req.params.commentId);//retieve an embedded record using it's id(even though its embedded inside another record)
       comment.remove();
 
-      return rock.save();//save the hotel without the comment
+      return rock.save();
     })
     .then((rock) => res.redirect(`/rocks/${rock.id}`))
     .catch(next);
 }
 //new image
 
-function newImageRoute(req, res) {
-  res.render('rocks/newImage');
-}
+// function newImageRoute(req, res) {
+//   res.render('rocks/newImage');
+// }
 
 //create image
-function createImageRoute(req, res, next) {
-  if(req.file) req.body.filename = req.file.key;
-
-  // For some reason multer's req.body doesn't behave like body-parser's
-  req.body = Object.assign({}, req.body);
-
-  req.user.images.push(req.body);
-
-  req.user
-    .save()
-    .then(() => res.redirect('/rocks'))
-    .catch((err) => {
-      console.log(err);
-      if(err.name === 'ValidationError') return res.badRequest('/rocks/images/new', err.toString());
-      next(err);
-    });
-}
+// function createImageRoute(req, res, next) {
+//   if(req.file) req.body.filename = req.file.key;
+//
+//   // For some reason multer's req.body doesn't behave like body-parser's
+//   req.body = Object.assign({}, req.body);
+//
+//   req.user.images.push(req.body);
+//
+//   req.user
+//     .save()
+//     .then(() => res.redirect('/rocks'))
+//     .catch((err) => {
+//       console.log(err);
+//       if(err.name === 'ValidationError') return res.badRequest('/rocks/images/new', err.toString());
+//       next(err);
+//     });
+// }
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -167,7 +169,7 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   createComment: createCommentRoute,
-  deleteComment: deleteCommentRoute,
-  newImage: newImageRoute,
-  createImage: createImageRoute
+  deleteComment: deleteCommentRoute
+  // newImage: newImageRoute,
+  // createImage: createImageRoute
 };

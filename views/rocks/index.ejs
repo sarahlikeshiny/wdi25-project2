@@ -13,6 +13,22 @@
 
   </div>
 
+  <section>
+    <h4>Comments</h4>
+    <% rock.comments.forEach((comment) => { %>
+      <p><%= comment.content %></p>
+      <small><%= comment.createdBy.username %></small>
+
+      <form method="POST" action="/rocks/<%= rock.id %>/comments/<%= comment.id %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <button>Delete</button>
+    </form>
+    
+    <% }) %>
+
+  </section>
+
+
 <section>
   <h4>Leave a comment</h4>
   <form method="POST" action="/rocks/<%= rock.id %>/comments">

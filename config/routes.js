@@ -5,12 +5,13 @@ const secureRoute = require('../lib/secureRoute');
 const rocks = require('../controllers/rocks');
 const upload = require('../lib/upload');
 
-router.get('/', (req, res) => res.render('statics/index'));//homepage. Will display the login.
+router.get('/', (req, res) => res.render('statics/index'));//homepage. Will display the login eventually
 
 
 router.route('/rocks')
   .get(rocks.index)
-  .post(secureRoute, rocks.create);
+  // .post(secureRoute, rocks.create)
+  .post(upload.single('image[filename]'), rocks.create);//this one is doing somthign weird?
 
 router.route('/rocks/new')
   .get(secureRoute, rocks.new);
@@ -25,16 +26,11 @@ router.route('/rocks/:id/edit')
 
 router.route('/rocks/:id/comments')
   // .post(secureRoute, rocks.createComment);
-  .post( rocks.createComment);
+  .post(rocks.createComment);
 
 router.route('/rocks/:id/comments/:commentId')
-    .delete(secureRoute, rocks.deleteComment);
-
-router.route('/rock/images/new')
-  .get(secureRoute, rocks.newImage);
-
-router.route('/rocks')
-  .post(secureRoute, upload.single('filename'), rocks.createImage);
+    // .delete(secureRoute, rocks.deleteComment);
+    .delete(rocks.deleteComment);
 
 router.route('/register')
   .get(registrations.new)
