@@ -1,106 +1,50 @@
-// $(() => {
+/* global google */
+
+$(() => {
 
 
 
-  // // Store the #map div, and make it available to all functions
-  // const $map = $('#map');
-  // // Set a map variable that will hold our Google map, and is available to all functions
-  // let map = null;
-  // // If there is a #map div on the page, then initialise the Google map
-  // if ($map.length) initMap();
-  //
-  // function initMap() {
-  //   const latLng = { lat: 51.515113, lng: -0.072051 };
-  //   map = new google.maps.Map($map.get(0), {
-  //     zoom: 5,
-  //     center: latLng,
-  //     scrollwheel: false
-  //     // // Map styles are stored in another .js file - which is required above the app.js and is available inside this file
-  //     // styles: mapStyles
-  //   });
-  // }
+  let $lat = $('[name=lat]');
+  let $lng = $('[name=lng]');
 
+  const $input = $('.autocomplete');
 
-
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 51.515113, lng: -0.072051},
-    zoom: 13
-  });
-  var card = document.getElementById('pac-card');
-  var input = document.getElementById('pac-input');
-  var types = document.getElementById('type-selector');
-  var strictBounds = document.getElementById('strict-bounds-selector');
-
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-  var autocomplete = new google.maps.places.Autocomplete(input);
-
-       // Bind the map's bounds (viewport) property to the autocomplete object,
-       // so that the autocomplete requests use the current map bounds for the
-       // bounds option in the request.
-  autocomplete.bindTo('bounds', map);
-
-  var infowindow = new google.maps.InfoWindow();
-  var infowindowContent = document.getElementById('infowindow-content');
-  infowindow.setContent(infowindowContent);
-  var marker = new google.maps.Marker({
-    map: map,
-    anchorPoint: new google.maps.Point(0, -29)
-  });
+  const autocomplete = new google.maps.places.Autocomplete($input[0]);
 
   autocomplete.addListener('place_changed', function() {
-    infowindow.close();
-    marker.setVisible(false);
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-     // User entered the name of a Place that was not suggested and
-     // pressed the Enter key, or the Place Details request failed.
-      window.alert("No details available for input: '" + place.name + "'");
-      return;
-    }
-
-         // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17);  // Why 17? Because it looks good.
-    }
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
-
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
-
-    infowindowContent.children['place-icon'].src = place.icon;
-    infowindowContent.children['place-name'].textContent = place.name;   infowindowContent.children['place-address'].textContent = address;
-    infowindow.open(map, marker);
+    const place = autocomplete.getPlace();
+    // const location = place.geometry.location.toJSON();
+    console.log(location);
+    // $lat.val(location.lat);//NOT returning A NUMBER!!
+     $lat = place.geometry.location.lat();
+     $lng = place.geometry.location.lng();
+    // $lng.val(location.lng);//NOT returning A NUMBER!!
+    console.log($lat);
   });
 
-       // Sets a listener on a radio button to change the filter type on Places
-       // Autocomplete.
-  function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener('click', function() {
-      autocomplete.setTypes(types);
+  console.log($lat);
+
+  let map = null;
+
+  initMap();
+  //
+  function initMap() {
+    const latLng = {lat: 51.515113, lng: -0.072051};
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: latLng,
+      scrollwheel: false
+    });
+    addMarker();
+  }
+  function addMarker() {
+    const latLng = { lat: $lat, lng: $lng };
+    const marker = new google.maps.Marker({
+      position: latLng,
+      map: map
     });
   }
 
-  setupClickListener('changetype-all', []);
-  setupClickListener('changetype-address', ['address']);
-  setupClickListener('changetype-establishment', ['establishment']);
-  setupClickListener('changetype-geocode', ['geocode']);
 
-  document.getElementById('use-strict-bounds')
-     .addEventListener('click', function() {
-       console.log('Checkbox clicked! New state=' + this.checked);
-       autocomplete.setOptions({strictBounds: this.checked});
-     });
-}
+
+});//jquery

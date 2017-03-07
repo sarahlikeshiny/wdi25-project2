@@ -18,8 +18,8 @@ commentSchema.methods.ownedBy = function ownedBy(user){
 const rockSchema = new mongoose.Schema({
   name: {type: String},
   location: {type: String},
-  lat: {type: Number},
-  long: {type: Number},
+  lat: { type: Number },
+  lng: { type: Number },
   category: {type: String},
   createdBy: {type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   comments: [ commentSchema ],

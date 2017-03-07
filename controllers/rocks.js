@@ -18,10 +18,9 @@ function indexRoute(req, res, next) {
     .catch(next);
 }
 
-
-//create rocks route 
+//create rocks route
 function createRoute(req, res, next) {
-  console.log(req.body);
+
   req.body.createdBy = req.user;
 
   if(req.file) req.body.image.filename = req.file.key;
@@ -33,7 +32,9 @@ function createRoute(req, res, next) {
       if(err.name === 'ValidationError') return res.badRequest(`/rocks/${req.params.id}/edit`, err.toString());
       next(err);
     });
+  console.log(req.body);
 }
+
 //show rocks route,
 function showRoute(req, res, next) {
   Rock
@@ -46,8 +47,6 @@ function showRoute(req, res, next) {
     })
     .catch(next);
 }
-
-
 
 //edit rocks
 function editRoute(req, res, next) {
