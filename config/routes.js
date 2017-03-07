@@ -5,12 +5,11 @@ const secureRoute = require('../lib/secureRoute');
 const rocks = require('../controllers/rocks');
 const upload = require('../lib/upload');
 
-router.get('/', (req, res) => res.render('sessions/new'));//homepage. Will display the login eventually
+router.get('/', (req, res) => res.render('sessions/new'));
 
 
 router.route('/rocks')
-  .get(rocks.index)
-  // .post(secureRoute, rocks.create)
+  .get(secureRoute, rocks.index)
   .post(upload.single('image[filename]'), rocks.create);
 
 router.route('/rocks/new')

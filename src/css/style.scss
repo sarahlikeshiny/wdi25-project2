@@ -1,12 +1,10 @@
 
-$heading:'Open Sans', sans-serif;
-$body:'Roboto', sans-serif;
 
 li {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-family: $body;
+
 }
 
 #map {
@@ -19,6 +17,7 @@ li {
   display: inline;
 }
 h1{
+
   font-size: 30px;
 }
 h2 {
@@ -29,11 +28,15 @@ h3 {
 }
 
 .hero-container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/images/hero.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/assets/images/hero.jpg');
   background-position: center;
   background-size: cover;
   position:relative;
   height: 100vh;
+  h1 {
+    font-family: 'Shrikhand', cursive;
+    color: white;
+     -webkit-text-stroke: 1px grey;
     form {
       font-size: 15px;
       position: absolute;
@@ -41,13 +44,14 @@ h3 {
       left: 50%;
       transform: translate(-50%, -50%);//centers the text
       color: white;
-      font-family: $body;
+      font-family: 'Lato', sans-serif;
         input {
           background: none;
             .btn-outline-primary {
               border-color: white;
-            }
+
         }
       }
-
+}
+}
 }

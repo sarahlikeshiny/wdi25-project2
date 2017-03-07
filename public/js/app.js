@@ -1,1 +1,22 @@
-"use strict";
+'use strict';
+
+$(function () {
+
+  // Store the #map div, and make it available to all functions
+  var $map = $('#map');
+  // Set a map variable that will hold our Google map, and is available to all functions
+  var map = null;
+  // If there is a #map div on the page, then initialise the Google map
+  if ($map.length) initMap();
+
+  function initMap() {
+    var latLng = { lat: 51.515113, lng: -0.072051 };
+    map = new google.maps.Map($map.get(0), {
+      zoom: 14,
+      center: latLng,
+      scrollwheel: false
+      // // Map styles are stored in another .js file - which is required above the app.js and is available inside this file
+      // styles: mapStyles
+    });
+  }
+});
