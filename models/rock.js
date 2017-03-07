@@ -18,6 +18,8 @@ commentSchema.methods.ownedBy = function ownedBy(user){
 const rockSchema = new mongoose.Schema({
   name: {type: String},
   location: {type: String},
+  lat: {type: Number},
+  long: {type: Number},
   category: {type: String},
   createdBy: {type: mongoose.Schema.ObjectId, ref: 'User', required: true},
   comments: [ commentSchema ],
@@ -28,11 +30,6 @@ const rockSchema = new mongoose.Schema({
 },{
   timestamps: true
 });
-//check to see if the comment is owned by the user who is logged in
-// rockSchema.methods.ownedBy = function ownedBy(user){
-//   return this.createdBy.id === user.id;
-// };
-
 
 rockSchema.virtual('imageSRC')
   .get(function getImageSRC(){
