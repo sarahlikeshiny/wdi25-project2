@@ -28,17 +28,17 @@ app.use(express.static(`${__dirname}/public`));//send everything in public witho
 //connect to our database
 mongoose.connect(dbURI);
 
-//set up our middleware
-if(env !== 'test') app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(methodOverride((req) => {
   if(req.body && typeof req.body === 'object' && '_method' in req.body) {
-    const method = req.bosy._method;
+    const method = req.body._method;
     delete req.body._method;
 
     return method;
   }
 }));
+
+if(env !== 'test') app.use(morgan('dev'));
 
 //set up our sessions
 app.use(session({

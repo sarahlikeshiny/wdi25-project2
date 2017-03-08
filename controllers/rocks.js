@@ -32,7 +32,6 @@ function createRoute(req, res, next) {
       if(err.name === 'ValidationError') return res.badRequest(`/rocks/${req.params.id}/edit`, err.toString());
       next(err);
     });
-  console.log(req.body);
 }
 
 //show rocks route,
@@ -112,6 +111,7 @@ function createCommentRoute(req, res, next) {
 //delete comment
 
 function deleteCommentRoute(req, res, next){
+
   Rock
     .findById(req.params.id)
     .exec()

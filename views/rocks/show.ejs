@@ -18,6 +18,7 @@
         <input type="hidden" name="_method" value="DELETE">
         <button>Delete Rock</button>
       </form>
+  
     <% } %>
 
   </div>
@@ -36,13 +37,14 @@
       <% rock.comments.forEach((comment) => { %>
         <p><%= comment.content %></p>
         <small><%= comment.createdBy.username %></small>
-    <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
-    <form method="POST" action="/rocks/<%= rock.id %>/comments/<%= comment.id %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <button>Delete</button>
-  </form>
-    <% } %>
-  <% }) %>
+
+        <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
+          <form method="POST" action="/rocks/<%= rock.id %>/comments/<%= comment.id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <button>Delete</button>
+          </form>
+        <% } %>
+      <% }) %>
 
 
 
