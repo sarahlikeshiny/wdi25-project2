@@ -34,9 +34,7 @@ $(() => {
 
 
   const rockData= $('#map').data('rocks');
-  console.log(rockData[2].id);
-
-
+  console.log(rockData);
 
   initMap();
 
@@ -78,6 +76,7 @@ $(() => {
     <div class="infowindow">
     <a href = "/rocks/${rockData._id}">
       <h3>${rockData.name}</h3></a>
+      <img src = "https://s3-eu-west-1.amazonaws.com/wdi25project2/${rockData.image.filename}"
     </div>
     `
     });

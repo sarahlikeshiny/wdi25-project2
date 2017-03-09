@@ -16,6 +16,11 @@ User
     email: 'sarah@hello',
     password: 'a',
     passwordConfirmation: 'a'
+  },{
+    username: 'Rockfan',
+    email: 'rocks@hello',
+    password: 'a',
+    passwordConfirmation: 'a'
   }])
   .then((users) => {
     console.log(`${users.length} users created`);

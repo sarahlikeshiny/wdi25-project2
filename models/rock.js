@@ -21,7 +21,7 @@ const rockSchema = new mongoose.Schema({
   lat: { type: Number },
   lng: { type: Number },
   category: {type: String},
-  createdBy: {type: mongoose.Schema.ObjectId, ref: 'User', required: true},
+  createdBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
   comments: [ commentSchema ],
   image: {
     filename: { type: String },
@@ -38,7 +38,8 @@ rockSchema.virtual('imageSRC')
   });
 
 rockSchema.pre('remove', function removeImage(next) {
-  s3.deleteObject({ Key: this.image.filename }, next);//amazon calls files objects, and filenames keys
+  if(this.image.filename) s3.deleteObject({ Key: this.image.filename }, next);//amazon calls files objects, and filenames keys
+  next();
 });
 
 

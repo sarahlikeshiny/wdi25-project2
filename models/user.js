@@ -4,14 +4,16 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   username: {type: String},
   email: { type: String},
-  password: {type: String, required: true},
-  profileImage: {type: String}
+  password: { type: String },
+  profileImage: {type: String},
+  facebookId: { type: String },
+  githubId: { type: Number }
 });
 
 //profile image, embedded in userSchema
 userSchema.virtual('profileImageSRC')
   .get(function getProfileImageSRC(){
-    if(!this.profileImage) return null;
+    if(!this.profileImage) return '../assets/images/lava.jpg';
     if(this.profileImage.match(/^http/)) return this.profileImage;
     return `https://s3-eu-west-1.amazonaws.com/wdi25project2/${this.profileImage}`;
   });
@@ -24,7 +26,7 @@ userSchema
 
   //lifecycle hook - mongoose middleware
 userSchema.pre('validate', function checkPassword(next) {
-  if(!this.password && !this.githubId) {
+  if(!this.password && !this.facebookId && !this.githubId) {
     this.invalidate('password', 'required');
   }
   if(this.isModified('password') && this._passwordConfirmation !== this.password) this.invalidate('passwordConfirmation', 'does not match');

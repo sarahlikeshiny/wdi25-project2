@@ -1,125 +1,170 @@
+// @import"bootstrap/bootstrap-social";
+$barscolor: rgba(36, 103, 204, 0.8);
+$hovercolor: rgb(240, 242, 176);
+$textcolor: darkslategrey;
 
-
-li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
+///global styles -----------------------------
+*{
+  font-family: 'Lato', sans-serif
 }
 
-#map {
-  background-color: grey;
-  height: 600px;
-  // color: white;
-}
-
-.comment {
-  display: inline;
-}
 h1{
-
   font-size: 30px;
+  color: $textcolor;
 }
 h2 {
   font-size: 20px;
+  color: $textcolor;
 }
 h3 {
   font-size: 15px;
+  color: $textcolor;
 }
+
+p{
+  font-size:12px;
+  color: $textcolor;
+}
+a{
+  font-size:20px;
+  color: $textcolor;
+}
+
+.btn {
+  background-color: rgba(255,255,255, 0.8);
+  color: $textcolor;
+  border: 2px solid $textcolor;
+
+  &:hover {
+    background-color: $hovercolor;
+    color: darkred;
+    border: 2px solid darkred;
+  }
+}
+label {
+  font-size: 20px;
+  color:white;
+}
+
+
 //landing page-----------------------------------------
 .hero-container {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/assets/images/hero.jpg');
   background-position: center;
   background-size: cover;
   position:relative;
-  height: 100vh;
+  height: 90vh;
   h1 {
+    position:absolute;
+    margin-left: 10px;
     font-family: 'Shrikhand', cursive;
     color: white;
      -webkit-text-stroke: 1px grey;
-    form {
-      font-size: 15px;
-      position: absolute;
-      top: 80%;
-      left: 50%;
-      transform: translate(-50%, -50%);//centers the text
-      color: white;
-      font-family: 'Lato', sans-serif;
-        input {
-          background: none;
-            .btn-outline-primary {
-              border-color: white;
 
-        }
-      }
+   }
 }
+#loginform {
+  width: 250px;
+  display: block;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -100px;
+  color: white;
+  .buttons {
+    margin:0 auto;
+    text-align: center;
+  }
 }
+.btn-facebook {
+  background-color: #3B5998;
+  color:white;
+  border:none;
+  font-size:18px;
+  font-family: sans-serif;
 }
-//--------------------autocomplete styles - from google
-#description {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
+.btn-github {
+  background-color: #3a3c3f;
+  color:white;
+  border:none;
+  font-size:18px;
+  font-family: sans-serif;
 }
 
-#infowindow-content .title {
-  font-weight: bold;
+
+//feed page ------------------
+#map {
+  background-color: grey;
+  height: 600px;
+  border: solid grey 2px;
+  margin-top: 15px;
+  // color: white;
 }
 
-#infowindow-content {
-  display: none;
-}
 
-#map #infowindow-content {
+///rocks show page-----------------------------
+
+.comment {
   display: inline;
 }
 
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  font-family: Roboto;
+////new rock page---------------------------
+#uploadbackground {
+background-image: linear-gradient(rgba(196, 196, 206, 0.8), rgba(196, 196, 206, 0.9)), url('/assets/images/hero.jpg');
+background-position: center;
+background-size: cover;
+position:relative;
+height: 90vh;
+  label {
+    font-size: 20px;
+  }
 }
 
-#pac-container {
-  padding-bottom: 12px;
-  margin-right: 12px;
+.form-control {
+  background-color: rgba(239, 240, 242, .7);
+  &:hover {
+    background-color: $hovercolor;
+  }
+  }
+
+
+
+///users index------------------------------------
+.rounded .float-left {
+  margin:5px;
 }
 
-.pac-controls {
-  display: inline-block;
-  padding: 5px 11px;
+///navbar---------------
+.navbar {
+  background-color: $barscolor;
+}
+.navbar-light .navbar-nav .nav-link {
+
+  color:white;
+  font-size: 20px;
+  &:hover {
+    color:darkred;
+  }
+}
+.navbar-light .navbar-brand, .navbar-light .navbar-toggler {
+  color: white;
+  font-size: 30px;
+  font-family:'Shrikhand', cursive;
+  &:hover {
+    color:darkred;
+  }
+}
+//text for forms with white background-----------
+.reg {
+  color:$textcolor;
 }
 
-.pac-controls label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
+//footer ----------------
 
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 400px;
-}
-
-#pac-input:focus {
-  border-color: #4d90fe;
-}
-
-#title {
-  color: #fff;
-  background-color: #4d90fe;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 6px 12px;
+#footer {
+  background-color: $barscolor;
+  padding: 10px 0;
+  text-align: center;
+  color: white;
 }

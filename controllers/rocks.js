@@ -87,7 +87,7 @@ function deleteRoute(req, res, next) {
       if(!rock) return res.notFound();
       return rock.remove();
     })
-    .then(() => res.redirect('/ rocks'))
+    .then(() => res.redirect('/rocks'))
     .catch(next);
 }
 //create comment
@@ -125,30 +125,7 @@ function deleteCommentRoute(req, res, next){
     .then((rock) => res.redirect(`/rocks/${rock.id}`))
     .catch(next);
 }
-//new image
 
-// function newImageRoute(req, res) {
-//   res.render('rocks/newImage');
-// }
-
-//create image
-// function createImageRoute(req, res, next) {
-//   if(req.file) req.body.filename = req.file.key;
-//
-//   // For some reason multer's req.body doesn't behave like body-parser's
-//   req.body = Object.assign({}, req.body);
-//
-//   req.user.images.push(req.body);
-//
-//   req.user
-//     .save()
-//     .then(() => res.redirect('/rocks'))
-//     .catch((err) => {
-//       console.log(err);
-//       if(err.name === 'ValidationError') return res.badRequest('/rocks/images/new', err.toString());
-//       next(err);
-//     });
-// }
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -159,6 +136,5 @@ module.exports = {
   delete: deleteRoute,
   createComment: createCommentRoute,
   deleteComment: deleteCommentRoute
-  // newImage: newImageRoute,
-  // createImage: createImageRoute
+
 };

@@ -1,41 +1,31 @@
-const User = require('../models/user');
-const Rock = require('../models/rock');
 
-function indexRoute(req, res) {
+const Rock = require('../models/rock');
+const User = require('../models/user');
+
+//new users route,
+function newRoute(req, res) {
+  return res.render('users/new');
+}
+
+
+//index user route,
+function indexRoute(req, res, next) {
   User
     .find()
+    .populate('comments.createdBy')
     .exec()
-    .then((users) => {
-      res.render('users/index', { users });
-    })
-    .catch((err) => {
-      res.status(500).end(err);
-    });
-}
-
-function newRoute(req, res){
-  res.render('users/new');
-}
-
-function showRoute(req, res, next) {
-  User
-    .findById(req.params.id)
-    .populate('comments.createdBy')//populate the created by object
-    .exec()
-    .then((user) => {
-      if(!user) return res.notFound();
-      return res.render('users/show', { user });
-    })
+    .then((users) => res.render('users/index', { users }))
     .catch(next);
 }
 
+//create users route
 function createRoute(req, res, next) {
 
   req.body.createdBy = req.user;
 
   if(req.file) req.body.image.filename = req.file.key;
 
-  Rock
+  User
     .create(req.body)
     .then(() => res.redirect('/users'))
     .catch((err) => {
@@ -44,6 +34,19 @@ function createRoute(req, res, next) {
     });
 }
 
+//show users route,
+function showRoute(req, res, next) {
+  User.findById(req.params.id)
+  .then((user) => {
+    return Rock.find({createdBy: user.id})
+    .then((rocks) => {
+      res.render('users/show', { user, rocks });
+    })
+    .catch(next);
+  });
+}
+
+//edit users
 function editRoute(req, res, next) {
   User
     .findById(req.params.id)
@@ -53,7 +56,7 @@ function editRoute(req, res, next) {
     })
     .catch(next);
 }
-
+//update users
 function updateRoute(req, res, next) {
   User
     .findById(req.params.id)
@@ -74,6 +77,7 @@ function updateRoute(req, res, next) {
     });
 }
 
+//delete users
 function deleteRoute(req, res, next) {
   User
     .findById(req.params.id)
@@ -88,13 +92,14 @@ function deleteRoute(req, res, next) {
 
 
 
-
 module.exports = {
   index: indexRoute,
   new: newRoute,
-  show: showRoute,
   create: createRoute,
+  show: showRoute,
   edit: editRoute,
   update: updateRoute,
   delete: deleteRoute
+
+
 };

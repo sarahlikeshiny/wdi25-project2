@@ -1,52 +1,50 @@
-<h1>rocks/show</h1>
-
+<nav>
+  <% include ../partials/navbar %>
+</nav>
 <%if(locals.message) { %>
 <p><%= message %></p>
 <% } %>
-  <div>
 
-    <a href="/rocks/<%= rock.id %>">
-    </a>
-      <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>">
-      <h2><%= rock.name %></h2>
-      <h2><%= rock.location %></h2>
-      <h2><%= rock.category %></h2>
-      <h3><%= rock.image.caption %></h3>
+<div class = "container">
 
-      <% if(locals.isAuthenticated) { %>
-        <form method="POST" action="/rocks/<%= rock.id %>">
+<div class ="row">
+<div class = "col-md-6">
+  <a href="/rocks/<%= rock.id %>"></a>
+    <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>">
+</div>
+
+<div class = "col-md-6">
+  <h2><%= rock.name %></h2>
+  <h2><%= rock.location %></h2>
+  <h2><%= rock.category %></h2>
+  <h3><%= rock.image.caption %></h3>
+  <h2><%= rock.createdBy.username %></h2>
+  <h4>Comments</h4>
+    <% rock.comments.forEach((comment) => { %>
+      <p><%= comment.content %></p>
+      <small><%= comment.createdBy.username %></small>
+    <% }) %>
+  <% if(locals.isAuthenticated) { %>
+    <form method="POST" action="/rocks/<%= rock.id %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <button>Delete Rock</button>
+    </form>
+    <form method="POST" action="/rocks/<%= rock.id %>/comments">
+      <textarea name="content" id="content" class = "comment" placeholder="Comment"></textarea>
+      <button class ="comment">Leave a comment</button>
+    </form>
+  <% } %>
+  <% rock.comments.forEach((comment) => { %>
+    <p><%= comment.content %></p>
+    <small><%= comment.createdBy.username %></small>
+    <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
+      <form method="POST" action="/rocks/<%= rock.id %>/comments/<%= comment.id %>">
         <input type="hidden" name="_method" value="DELETE">
-        <button>Delete Rock</button>
+        <button>Delete</button>
       </form>
-  
     <% } %>
+  <% }) %>
+</div>
+</div>
 
-  </div>
-
-  <section>
-
-
-        <form method="POST" action="/rocks/<%= rock.id %>/comments">
-        <textarea name="content" id="content" class = "comment" placeholder="Comment"></textarea>
-        <div>
-        <button class ="comment">Leave a comment</button>
-        </div>
-        </form>
-
-
-      <% rock.comments.forEach((comment) => { %>
-        <p><%= comment.content %></p>
-        <small><%= comment.createdBy.username %></small>
-
-        <% if(locals.isAuthenticated && comment.ownedBy(user)) { %>
-          <form method="POST" action="/rocks/<%= rock.id %>/comments/<%= comment.id %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <button>Delete</button>
-          </form>
-        <% } %>
-      <% }) %>
-
-
-
-
-  </section>
+</div>

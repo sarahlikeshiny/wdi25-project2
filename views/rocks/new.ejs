@@ -1,5 +1,8 @@
-<h1>Rocks/new</h1>
-<h2>This is the uploads page</h2>
+
+<nav>
+  <% include ../partials/navbar %>
+</nav>
+<div id = uploadbackground>
 <%if(locals.message) { %>
 <p><%= message %></p>
 <% } %>
@@ -7,7 +10,7 @@
   <input type="hidden" name="lat">
   <input type="hidden" name="lng">
   <div class="form-group">
-    <label for="name" class="col-sm-2 col-form-label">Picture Title</label>
+    <label for="name">Picture Title</label>
     <input type="text" name="name" id="name" class="form-control">
   </div>
   <div class="form-group">
@@ -15,13 +18,13 @@
     <input id="location" class="autocomplete form-control">
   </div>
   <div class="form-group">
-    <label for="category" class"col-sm-2-col-form-label">Picture Category</label>
+    <label for="category">Picture Category</label>
     <select name="category" class="form-control">
-      <option value="structure">Structures</option>
-      <option value="sedimentary">Sedimentary</option>
-      <option value="igneous">Igneous</option>
-      <option value="metamorphic">Metamorphic</option>
-      <option value="misc">Everything Else!</option>
+      <option value="Structure">Structures</option>
+      <option value="Sedimentary">Sedimentary</option>
+      <option value="Igneous">Igneous</option>
+      <option value="Metamorphic">Metamorphic</option>
+      <option value="Misc">Everything Else!</option>
     </select>
   </div>
   <div class="form-group">
@@ -32,5 +35,6 @@
     <label for="filename">Image file</label>
     <input type="file" name="image[filename]" id="filename" class="form-control">
   </div>
-  <button class="btn btn-outline-primary">Add</button>
+  <button class="btn btn-outline-primary btn-lg btn-block">Add</button>
 </form>
+</div>

@@ -1,23 +1,22 @@
+<nav>
+  <% include ../partials/navbar %>
+</nav>
 
-
-<h1>rocks/index</h1>
-<h2>this is the feed page</h2>
 <div class = "container">
 <div class = "row">
 <div class ="col col-md-4">
 <% rocks.forEach((rock) => { %>
-    <a href="/rocks/<%= rock.id %>">
-      <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>" class= "img-thumbnail"></a>
-      <h2>Picture Name: <%= rock.name %></h2>
-      <h2>Location: <%= rock.location %></h2>
-      <h2>Category: <%= rock.category %></h2>
-      <h2>Picture Owner: <%= rock.createdBy.username %></h2>
-      <h3><%= rock.image.caption %></h3>
-    <h4>Comments</h4>
+  <a href="/rocks/<%= rock.id %>">
+  <h2>Picture Name: <%= rock.name %></h2>
+    <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>" class= "img-thumbnail"></a>
+  <h2>Category: <%= rock.category %></h2>
+  <h3><%= rock.image.caption %></h3>
+    <h2>Comments</h2>
     <% rock.comments.forEach((comment) => { %>
       <p><%= comment.content %></p>
-      <small><%= comment.createdBy.username %></small>
+      <small><%= comment.createdBy.username %></small><br>
       <% }) %>
+    <a href="/rocks/<%= rock.id %>"> Leave a comment</a>
 <% }) %>
 </div>
 

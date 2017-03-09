@@ -4,9 +4,11 @@ const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
 const rocks = require('../controllers/rocks');
 const users = require('../controllers/users');
+const oauthController = require('../controllers/oauth');
+const oauth = require('../config/oauth');
 const upload = require('../lib/upload');
 
-router.get('/', (req, res) => res.render('statics/index'));
+router.get('/', (req, res) => res.render('statics/index', { oauth }));
 
 
 router.route('/rocks')
@@ -31,10 +33,16 @@ router.route('/rocks/:id/comments')
 router.route('/rocks/:id/comments/:commentId')
   .delete(secureRoute, rocks.deleteComment);
 
+router.route('/users')
+  .get(secureRoute, users.index);
+
 router.route('/users/:id')
   .get(secureRoute, users.show)
   .put(secureRoute, users.update)
   .delete(secureRoute, users.delete);
+
+router.route('/users/:id/edit')
+  .get(secureRoute, users.edit);
 
 
 router.route('/register')
@@ -48,8 +56,12 @@ router.route('/login')
 router.route('/logout')
   .get(sessions.delete);
 
+router.route('/oauth/github')
+  .get(oauthController.github);
+
+router.route('/oauth/facebook')
+  .get(oauthController.facebook);
+
 router.all('*', (req, res) => res.notFound());
 
 module.exports = router;
-
-//
