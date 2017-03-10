@@ -3,11 +3,11 @@
 <h1> Rockstagram </h1>
 <h2> GA WDI London, Project 2, Mar 2017.</h2>
 
-Rockstagram is a web app built in 
+Rockstagram is a web app built in Express. It is based on Instragram as a photosharing app, intended for Geologists to share photographs of rocks. The google autocomplete and maps APIs have been integrated so that the locations of the photos can be displayed on a map.
 
 * This game is built in HTML5, CSS and Javascript with jQuery. 
 * Animation was created using the Animate.css style sheet.
-* The game is deployed via Heroku. (https://frozen-journey-66349.herokuapp.com/)
+* The game is deployed via Heroku. (https://polar-hollows-80952.herokuapp.com/)
 * The google web font 'Bungee' was used to style the game.
 
 This is a browser hosted version of the game, for optimnal functionality Google Chrome is recommended. 

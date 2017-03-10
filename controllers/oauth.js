@@ -57,7 +57,7 @@ function facebook(req, res, next) {
     url: oauth.facebook.accessTokenURL,
     qs: {
       client_id: oauth.facebook.clientId,
-      redirect_uri: 'http://localhost:3000/oauth/facebook',
+      redirect_uri: oauth.facebook.redirectUrl,
       client_secret: oauth.facebook.clientSecret,
       code: req.query.code
     },
