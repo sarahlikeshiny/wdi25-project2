@@ -70,7 +70,7 @@ $(function () {
 
     // Update the infowindow variable to be a new Google InfoWindow
     infowindow = new google.maps.InfoWindow({
-      content: '\n    <div class="infowindow">\n    <a href = "/rocks/' + rockData._id + '">\n      <h3>' + rockData.name + '</h3></a>\n      <img src = "https://s3-eu-west-1.amazonaws.com/wdi25project2/' + rockData.image.filename + '"\n    </div>\n    '
+      content: '\n    <div class="infowindow">\n    <a href = "/rocks/' + rockData._id + '">\n      <h3>' + rockData.name + '</h3></a>\n      <img class="img-thumbnail" src= "https://s3-eu-west-1.amazonaws.com/wdi25project2/' + rockData.image.filename + '"\n    </div>\n    '
     });
 
     // Finally, open the new InfoWindow

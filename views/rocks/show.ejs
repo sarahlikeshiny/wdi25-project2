@@ -10,7 +10,7 @@
 <div class ="row">
 <div class = "col-md-6">
   <a href="/rocks/<%= rock.id %>"></a>
-    <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>">
+    <img class="img-thumbnail" src="<%= rock.imageSRC %>" alt="<%= rock.name %>">
 </div>
 
 <div class = "col-md-6">
@@ -18,7 +18,7 @@
   <h2><%= rock.location %></h2>
   <h2><%= rock.category %></h2>
   <h3><%= rock.image.caption %></h3>
-  <h2><%= rock.createdBy.username %></h2>
+
   <h4>Comments</h4>
     <% rock.comments.forEach((comment) => { %>
       <p><%= comment.content %></p>

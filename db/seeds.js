@@ -24,23 +24,23 @@ User
   }])
   .then((users) => {
     console.log(`${users.length} users created`);
-    return Rock
-      .create([{
-        name: 'Moab Fault',
-        location: 'moab',
-        category: 'structures',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Moab_fault.JPG',
-        createdBy: users[0],
-        comment: 'its a biggie '
-      },{
-        name: 'Annot Sandstones',
-        location: 'Annot',
-        category: 'Sandstones',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Moab_fault.JPG',
-        createdBy: users[0],
-        comment: 'big frechie turbidites '
-      }]);
+    // return Rock
+    //   .create([{
+    //     name: 'Moab Fault',
+    //     location: 'moab',
+    //     category: 'structures',
+    //     image: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Moab_fault.JPG',
+    //     createdBy: users[0],
+    //     comment: 'its a biggie '
+    //   },{
+    //     name: 'Annot Sandstones',
+    //     location: 'Annot',
+    //     category: 'Sandstones',
+    //     image: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Moab_fault.JPG',
+    //     createdBy: users[0],
+    //     comment: 'big frechie turbidites '
+    //   }]);
   })
-  .then((rocks) => console.log(`${rocks.length} rocks created`))
+  // .then((rocks) => console.log(`${rocks.length} rocks created`))
   .catch((err) => console.log(err))
   .finally(() => mongoose.connection.close());

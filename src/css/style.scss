@@ -29,6 +29,9 @@ a{
   font-size:20px;
   color: $textcolor;
 }
+h5{
+  font-size: 17px;
+}
 
 .btn {
   background-color: rgba(255,255,255, 0.8);
@@ -67,12 +70,12 @@ label {
   width: 250px;
   display: block;
   position: fixed;
-  top: 40%;
-  left: 40%;
+  top: 45%;
+  left: 45%;
   margin-top: -50px;
   margin-left: -100px;
   color: white;
-  .buttons {
+  #buttons {
     margin:0 auto;
     text-align: center;
   }
@@ -101,6 +104,10 @@ label {
   margin-top: 15px;
   // color: white;
 }
+// .markerpic {
+//   height: 350px;
+//   width: 350px;
+// }
 
 
 ///rocks show page-----------------------------
