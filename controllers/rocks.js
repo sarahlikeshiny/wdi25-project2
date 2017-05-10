@@ -12,7 +12,7 @@ function newRoute(req, res) {
 function indexRoute(req, res, next) {
   Rock
     .find()
-    .populate('comments.createdBy')
+    .populate('createdBy comments.createdBy')
     .exec()
     .then((rocks) => res.render('rocks/index', { rocks }))
     .catch(next);
@@ -38,7 +38,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Rock
     .findById(req.params.id)
-    .populate('comments.createdBy')//populate the created by object
+    .populate('createdBy comments.createdBy')//populate the created by object
     .exec()
     .then((rock) => {
       if(!rock) return res.notFound();

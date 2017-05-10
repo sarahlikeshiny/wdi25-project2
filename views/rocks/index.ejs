@@ -2,26 +2,36 @@
   <% include ../partials/navbar %>
 </nav>
 
-<div class = "container">
-<div class = "row">
-<div class ="col col-md-4">
+<div class = "container-fluid">
+  <div class= "row">
+    <div class= "col-md-10">
+      <h2>Location of Pictures</h2>
+    <div id ="map" data-rocks="<%= JSON.stringify(rocks)%>"></div>
+    </div>
+  </div>
+
 <% rocks.forEach((rock) => { %>
+  <div class = "row">
+  <div class="col-md-3"></div>
+  <div class ="picture col-md-6">
   <a href="/rocks/<%= rock.id %>">
-  <h2>Picture Name: <%= rock.name %></h2>
-    <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>" class= "img-thumbnail"></a>
+  <h2 class="name"> <%= rock.name %></h2>
+  <img src="<%= rock.imageSRC %>" alt="<%= rock.name %>" class= "img-thumbnail"></a>
   <h2>Category: <%= rock.category %></h2>
   <h3><%= rock.image.caption %></h3>
-    <h2>Comments</h2>
-    <% rock.comments.forEach((comment) => { %>
-      <p><%= comment.content %></p>
-      <small><%= comment.createdBy.username %></small><br>
-      <% }) %>
-    <a href="/rocks/<%= rock.id %>"> Leave a comment</a>
-<% }) %>
-</div>
 
-  <div id ="map" data-rocks="<%= JSON.stringify(rocks)%>"class ="col col-md-8">
-  </div>
-  </div>
-</div>
+  <div class="comments">
+    <h2 >Comments</h2>
+    <% rock.comments.forEach((comment) => { %>
+      <span class="commentuser"><%= comment.createdBy.username %></span><p><%= comment.content %></p>
+      <% }) %>
+    </div>
+    <a class= "btn" href="/rocks/<%= rock.id %>"> Leave a comment</a>
+    </div>
+    <div class="col-md-3"></div>
+    </div>
+<% }) %>
+
+
+
 </div>

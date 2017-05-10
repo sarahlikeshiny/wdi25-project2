@@ -21,7 +21,7 @@ const rockSchema = new mongoose.Schema({
   lat: { type: Number },
   lng: { type: Number },
   category: {type: String},
-  createdBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ],
   image: {
     filename: { type: String },

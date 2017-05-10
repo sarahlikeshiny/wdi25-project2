@@ -2,39 +2,43 @@
 <nav>
   <% include ../partials/navbar %>
 </nav>
-<div id = uploadbackground>
-<%if(locals.message) { %>
-<p><%= message %></p>
-<% } %>
-<form method="POST" action="/rocks" enctype="multipart/form-data">
-  <input type="hidden" name="lat">
-  <input type="hidden" name="lng">
-  <div class="form-group">
-    <label for="name">Picture Title</label>
-    <input type="text" name="name" id="name" class="form-control">
+<div class="container-fluid">
+  <div id = uploadbackground>
+  <%if(locals.message) { %>
+  <p><%= message %></p>
+  <% } %>
+  <div class="new col-md-8">
+    <h2>Add a Picture to Rockstagram</h2>
+  <form method="POST" action="/rocks" enctype="multipart/form-data">
+    <input type="hidden" name="lat">
+    <input type="hidden" name="lng">
+    <div class="form-group">
+      <label for="name">Picture Title</label>
+      <input type="text" name="name" id="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input id="location" class="autocomplete form-control">
+    </div>
+    <div class="form-group">
+      <label for="category">Picture Category</label>
+      <select name="category" class="form-control">
+        <option value="Structure">Structures</option>
+        <option value="Sedimentary">Sedimentary</option>
+        <option value="Igneous">Igneous</option>
+        <option value="Metamorphic">Metamorphic</option>
+        <option value="Misc">Everything Else!</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="caption">Caption</label>
+      <textarea name="image[caption]" id="caption" class="form-control"></textarea>
+    </div>
+    <div class="form-control-file">
+      <label for="filename">Image file</label>
+      <input type="file" name="image[filename]" id="filename" class="form-control">
+    </div>
+    <button class="btn btn-outline-primary btn-lg btn-block">Add</button>
+  </form>
   </div>
-  <div class="form-group">
-    <label for="location">Location</label>
-    <input id="location" class="autocomplete form-control">
-  </div>
-  <div class="form-group">
-    <label for="category">Picture Category</label>
-    <select name="category" class="form-control">
-      <option value="Structure">Structures</option>
-      <option value="Sedimentary">Sedimentary</option>
-      <option value="Igneous">Igneous</option>
-      <option value="Metamorphic">Metamorphic</option>
-      <option value="Misc">Everything Else!</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="caption">Caption</label>
-    <textarea name="image[caption]" id="caption" class="form-control"></textarea>
-  </div>
-  <div class="form-control-file">
-    <label for="filename">Image file</label>
-    <input type="file" name="image[filename]" id="filename" class="form-control">
-  </div>
-  <button class="btn btn-outline-primary btn-lg btn-block">Add</button>
-</form>
 </div>
