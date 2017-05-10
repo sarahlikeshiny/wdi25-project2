@@ -35,13 +35,13 @@ To run the app on a local host run `gulp` in the terminal and the application wi
 ### Wireframes
 Wire framing was done in Balsamiq;
 
-![](/Users/sarahmiller/Desktop/Project 2 Pics/Wireframes.png)
+![](/public/assets/images/Wireframes.png)
 
 Planning the pages necessary was an essential step in the process of building the app, and I revisited these plans on a daily basis. In order to build the app by the project deadline pages that were not in the original plan were added, these had been intended as an interim step in the build process but the timeframe meant that there was no time to remove these.
 
 In addition to wire framing, planning each of the tasks was done in Trello, the EleGantt plug in was also utilised in order to keep track of project timings.
 
-![](/Users/sarahmiller/Desktop/Project 2 Pics/trello.png)
+![](/public/assets/images/trello.png)
 
 
 <h3> Site Functionality</h3>
@@ -49,16 +49,20 @@ The user flow through the site is as follows;
 
 The homepage is a Login page.
 
-![](/Users/sarahmiller/Desktop/Project 2 Pics/login page.png)
+![](/public/assets/images/login.png)
 
 Once logged in, or registered the the user is redirected to the rocks index page, here they can see all of the pictures uploaded to the site and the map with the locations the pictures were taken. Navigation through the site is principally via the navigation bar.
 
-![](/Users/sarahmiller/Desktop/Project 2 Pics/rocks index.png)
+![](/public/assets/images/rocksindex.png)
 
-Clicking on the pictures redirects to the rocks show page, where the owner of the record can delete the picture and all users can leave comments. Only the owner of the comments can edit or delete these. Additionally a user can see all of the other registered users of the site on the user index page,
 
-![](/Users/sarahmiller/Desktop/Project 2 Pics/users index.png)
+![](/public/assets/images/rocksindex2.png)
 
+Clicking on the pictures redirects to the rocks show page, where the owner of the record can delete the picture and all users can leave comments. Only the owner of the comments can edit or delete these.
+
+![](/public/assets/images/rocksshow.png)
+
+ Additionally a user can see all of the other registered users of the site on the user index page,
 
 Clicking on the user profile pictures redirects to the user show page, here the user can edit or delete their profiles.
 
